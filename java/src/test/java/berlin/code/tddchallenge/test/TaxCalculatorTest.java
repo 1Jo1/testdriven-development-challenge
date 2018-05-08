@@ -36,7 +36,7 @@ public class TaxCalculatorTest {
 
 
     @Test
-    public void calculationTest() {
+    public void calculationTest() { //Integration Test
         TaxCalculator calc = new TaxCalculator(db, cart);
 
         assertEquals(2.60,calc.getSubtotal(0),0.005,"unexpected subtotal for 0%");
@@ -51,13 +51,12 @@ public class TaxCalculatorTest {
         assertEquals(4.00,calc.getGrandtotalTaxAmount(),0.005,"unexpected getGrandtotalTaxAmount");
     }
 
-
     @Test
     public void subTotalCounterTest() {
         TaxCalculator taxCalculator = new TaxCalculator(db,cart);
-        double subTotalCounterZero = taxCalculator.getSubTotalCount(0);
-        double subTotalCounterSeven = taxCalculator.getSubTotalCount(0.07);
-        double subTotalCounterNineTeen = taxCalculator.getSubTotalCount(0.19);
+        int subTotalCounterZero = taxCalculator.getSubTotalCount(0);
+        int  subTotalCounterSeven = taxCalculator.getSubTotalCount(0.07);
+        int subTotalCounterNineTeen = taxCalculator.getSubTotalCount(0.19);
 
         assertEquals(4,subTotalCounterZero);
         assertEquals(11,subTotalCounterSeven);
@@ -69,7 +68,7 @@ public class TaxCalculatorTest {
     public void subTotalGrandTest() {
         TaxCalculator taxCalculator = new TaxCalculator(db,cart);
 
-        double grandTotalCount = taxCalculator.getGrantTotalCount();
+        int grandTotalCount = taxCalculator.getGrantTotalCount();
         assertEquals(18,grandTotalCount);
     }
 
@@ -99,6 +98,6 @@ public class TaxCalculatorTest {
         double orangeTaxAmountPriceTotal = taxCalculator.getPriceTotal("orange",4);
 
         assertEquals(4.00,appleGetPriceTotal);
-        assertEquals(4.00,orangeTaxAmountPriceTotal);
+        assertEquals(3.60,orangeTaxAmountPriceTotal);
     }
 }
